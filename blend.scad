@@ -11,7 +11,7 @@ blend_one_one();
 // one switch and one plug
 module blend_one_one() {
   x = 86; y = 86; depth = 5;  wall = 3;
-  switch_offset = 32.25;
+  switch_offset = 32.5;
   plug_offset = 23;
   screw_offset = 35.6; screw_depth = 10;
   union() {
@@ -55,7 +55,7 @@ module blend_flat() {
 }
 
 module switch_hole() {
-  roundedRect(26.5, 24.5, 3);
+  roundedRect(27, 25, 3);
 }
 
 // 0,0 = earth plug hole center
