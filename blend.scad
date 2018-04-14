@@ -10,13 +10,13 @@ blend_one_one();
 
 // one switch and one plug
 module blend_one_one() {
-  x = 86; y = 86; depth = 5;  wall = 3;
+  x = 86; y = 86; depth = 5;  wall = 3; thickness = 2.5;
   switch_offset = 32.5;
   plug_offset = 23;
   screw_offset = 35.6; screw_depth = 10;
   union() {
     difference() {
-      blend_case(x, y, 8, depth, wall);
+      blend_case(x, y, 8, depth, wall, thickness);
       translate([0, y/2 - switch_offset, -(depth+epsilon)])
         linear_extrude(depth+2*epsilon) switch_hole();
       translate([0, -y/2 + plug_offset, -(depth+epsilon)])
@@ -27,22 +27,22 @@ module blend_one_one() {
         screw_head();
     }
     translate([0, y/2 - switch_offset, -depth])
-      linear_extrude(depth-wall) difference() {
+      linear_extrude(depth-thickness) difference() {
         scale([1.1,1.1]) switch_hole();
         switch_hole();
       };
     translate([0, -y/2 + screw_offset, -screw_depth])
-      linear_extrude(screw_depth-wall) difference() {
+      linear_extrude(screw_depth-thickness) difference() {
         circle(d=7.9);
         screw_hole();
       };
   }
 }
 
-module blend_case(x, y, r, depth, wall) {
+module blend_case(x, y, r, depth, wall, thickness) {
   difference() {
     roundedCube(x, y, depth, r);
-    translate([0, 0, -depth - wall])
+    translate([0, 0, -depth - thickness])
       linear_extrude(depth) roundedRect(x-2*wall, y-2*wall, r-wall);
   }
 }
