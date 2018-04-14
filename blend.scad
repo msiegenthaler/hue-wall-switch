@@ -23,6 +23,8 @@ module blend_one_one() {
         linear_extrude(depth+2*epsilon) earthed_plug_holes();
       translate([0, -y/2 + screw_offset, (-depth+epsilon)])
         linear_extrude(depth+2*epsilon) screw_hole();
+      translate([0, -y/2 + screw_offset, 0])
+        screw_head();
     }
     translate([0, y/2 - switch_offset, -depth])
       linear_extrude(depth-wall) difference() {
@@ -77,6 +79,15 @@ module plug_hole() {
 
 module screw_hole() {
   circle(d=3.3);
+}
+
+module screw_head() {
+  head_diameter = 5.1;
+  head_depth = 1.5;
+  hull() {
+    linear_extrude(epsilon) circle(d=head_diameter);
+    translate([0,0,-head_depth]) linear_extrude(epsilon) screw_hole();
+  }
 }
 
 
