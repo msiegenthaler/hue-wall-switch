@@ -1,19 +1,19 @@
 // Socket blends (covers)
 
 quality = 50;
-epsilon = 0.1;
+epsilon = 0.001;
 include <lib.scad>;
 
 // switch_hole();
 // earthed_plug_holes();
-blend_one_one();
+// blend_one_one();
 
 // one switch and one plug
-module blend_one_one() {
-  x = 86; y = 86; depth = 5;  wall = 3; thickness = 2.5;
+module blend_one_one(depth=5) {
+  x = 86; y = 86; wall = 3; thickness = 2.5;
   switch_offset = 32.5;
   plug_offset = 23;
-  screw_offset = 35.6; screw_depth = 10;
+  screw_offset = 35.6; screw_depth = 5+depth;
   union() {
     difference() {
       blend_case(x, y, 8, depth, wall, thickness);
