@@ -1,7 +1,7 @@
 // Hue holder
 
 quality = 50;
-epsilon = 0.1;
+epsilon = 0.001;
 include <lib.scad>;
 
 // bar();
@@ -9,7 +9,7 @@ include <lib.scad>;
 //upper_plate();
 //cutout(5);
 // magnet_holder();
-simple(43, 100);
+// simple(43, 100);
 
 module simple(x, y) {
   cutout_depth=3.8;
