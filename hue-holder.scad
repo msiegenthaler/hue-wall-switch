@@ -7,20 +7,21 @@ include <lib.scad>;
 // bar();
 //lower_plate();
 //upper_plate();
-//cutout(5);
+// cutout(5);
 // magnet_holder();
 // simple(43, 100);
+
+magnet_x_offset=9;
+magnet_depth=2+0.2;
 
 module simple(x, y) {
   cutout_depth=3.8;
   wall_strength=2;
-  magnet_x_offset=9;
-  magnet_depth=2+0.2;
   d = cutout_depth+wall_strength+magnet_depth;
   union() {
     difference() {
       cube([x, y, d], center=true);
-      translate([0,0,2*epsilon]) cutout(cutout_depth);
+      translate([0,0,0.3]) cutout(cutout_depth);
       translate([magnet_x_offset,0,-d/2-epsilon])
         negative_magnet_holder(magnet_depth);
       translate([-magnet_x_offset,0,-d/2-epsilon])

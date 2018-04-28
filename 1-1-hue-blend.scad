@@ -12,9 +12,6 @@ additonal_blend = holder_height+6;
 
 wall_strength=1;
 
-magnet_x_offset=9;
-magnet_depth=2+0.2;
-
 depth = 6.5;
 cutout_depth = depth - (wall_strength+magnet_depth) ;
 echo(cutout_depth);
