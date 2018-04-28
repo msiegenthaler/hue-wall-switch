@@ -129,3 +129,8 @@ module screw_head() {
     translate([0,0,-head_depth]) linear_extrude(epsilon) screw_hole();
   }
 }
+
+module screw_head_extension() {
+  head_diameter = 5.1;
+  linear_extrude(20) circle(d=head_diameter);
+}
