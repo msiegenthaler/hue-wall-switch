@@ -79,11 +79,11 @@ module blend_one_one(depth=5) {
   }
 }
 
-module blend_case(x, y, r, depth, wall, thickness) {
+module blend_case(x, y, r, depth, thickness_top, thickness_side) {
   difference() {
     roundedCube(x, y, depth, r);
-    translate([0, 0, -depth - thickness])
-      linear_extrude(depth) roundedRect(x-2*wall, y-2*wall, r-wall);
+    translate([0, 0, -thickness_top-0.01])
+      roundedCube(x-2*thickness_side, y-2*thickness_side, depth-thickness_top, r);
   }
 }
 
