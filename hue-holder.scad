@@ -67,11 +67,11 @@ module cutout(total_depth) {
       translate([0,0,depth]) linear_extrude(epsilon) upper_plate();
     }
     translate([0,0,depth]) linear_extrude(total_depth-depth) upper_plate();
-    translate([0,39.5,0]) bar();
+    translate([0,40,0]) bar();
   }
 }
 
-base_w=35; base_h=92;
+base_w=35; base_h=93;
 upper_delta=2;
 module lower_plate() {
   roundedRect(base_w, base_h, 2.5);
