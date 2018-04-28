@@ -1,6 +1,5 @@
 // Hue blend for one-switch + no-plugs socket
-// quality = 50;
-quality = 1;
+quality = 50;
 epsilon = 0.001;
 
 include <blend.scad>
@@ -11,7 +10,7 @@ y = 133;
 thickness = 2.5;
 wall = 1;
 
-light_switch_height=4.8;
+light_switch_height=5.2;
 cutout_depth=3.5;
 base_depth = 5;
 additional_depth=light_switch_height+cutout_depth;
