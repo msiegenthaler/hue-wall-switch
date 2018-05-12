@@ -8,6 +8,40 @@ include <lib.scad>;
 // earthed_plug_holes();
 // blend_one_one();
 // blend_one_zero();
+// blend_two_zero();
+
+module blend_two_zero(depth=5) {
+  x = 86; y=146; wall=3; thickness=2.5;
+  switch_offset = 42.5;
+  screw1_offset = 25; screw2_offset = 60;
+  screw_depth = depth;
+  difference() {
+    blend_case(x, y, 8, depth, wall, thickness);
+
+    translate([0, y/2 - switch_offset, -(depth+epsilon)])
+      linear_extrude(depth+2*epsilon) switch_hole();
+    translate([0, -y/2 + switch_offset, -(depth+epsilon)])
+      linear_extrude(depth+2*epsilon) switch_hole();
+
+    translate([0, y/2 - screw1_offset, (-depth+epsilon)])
+      linear_extrude(depth+2*epsilon) screw_hole();
+    translate([0, y/2 - screw1_offset, 0])
+      screw_head();
+    translate([0, -y/2 + screw1_offset, (-depth+epsilon)])
+      linear_extrude(depth+2*epsilon) screw_hole();
+    translate([0, -y/2 + screw1_offset, 0])
+      screw_head();
+
+    translate([0, y/2 - screw2_offset, (-depth+epsilon)])
+      linear_extrude(depth+2*epsilon) screw_hole();
+    translate([0, y/2 - screw2_offset, 0])
+      screw_head();
+    translate([0, -y/2 + screw2_offset, (-depth+epsilon)])
+      linear_extrude(depth+2*epsilon) screw_hole();
+    translate([0, -y/2 + screw2_offset, 0])
+      screw_head();
+  }
+}
 
 module blend_one_zero(depth=5) {
   x = 86; y = 86; wall = 3; thickness = 2.5;
