@@ -9,6 +9,41 @@ include <lib.scad>;
 // blend_one_one();
 // blend_one_zero();
 // blend_two_zero();
+blend_three_one();
+
+module blend_three_one(depth=5) {
+  x=85.7; y=205; wall=3; thickness=2.5;
+  switch1_offset=30.8; switch2_offset=90.5; switch3_offset=40;
+  // screw_switch_offset=30.8-25+25/2;
+  // screw_switch_offset=-25/2+30.8+25/2-25;
+  top_screw_switch_offset=30.8-25;
+  bottom_screw_switch_offset=-top_screw_switch_offset-25;
+  difference() {
+    blend_case(x, y, 8, depth, wall, thickness);
+
+    translate([0, y/2-25/2-switch1_offset, -(depth+epsilon)])
+      linear_extrude(depth+2*epsilon) switch_hole();
+    translate([0, y/2-25/2-switch2_offset, -(depth+epsilon)])
+      linear_extrude(depth+2*epsilon) switch_hole();
+    translate([0, -y/2+25/2+switch3_offset, -(depth+epsilon)])
+      linear_extrude(depth+2*epsilon) switch_hole();
+
+    translate([0, -y/2+22.5, -(depth+epsilon)])
+      linear_extrude(depth) earthed_plug_holes();
+    
+    translate([0,y/2-switch1_offset+top_screw_switch_offset,0])
+      screw_hole_with_head(depth);
+    translate([0,y/2-switch1_offset+bottom_screw_switch_offset,0])
+      screw_hole_with_head(depth);
+    translate([0,y/2-switch2_offset+top_screw_switch_offset,0])
+      screw_hole_with_head(depth);
+    translate([0,y/2-switch2_offset+bottom_screw_switch_offset,0])
+      screw_hole_with_head(depth);
+    translate([0,-y/2+36,0])
+      screw_hole_with_head(depth);    
+  }
+}
+
 
 module blend_two_zero(depth=5) {
   x = 86; y=146; wall=3; thickness=2.5;
@@ -149,6 +184,12 @@ module earthed_plug_holes() {
 module plug_hole() {
   // gem. https://de.wikipedia.org/wiki/SEV_1011
   circle(d=4.5);
+}
+
+module screw_hole_with_head(depth) {
+  screw_head();
+  translate([0,0,-depth])
+    linear_extrude(depth+2*epsilon) screw_hole();
 }
 
 module screw_hole() {
