@@ -9,7 +9,7 @@ include <lib.scad>;
 // blend_one_one();
 // blend_one_zero();
 // blend_two_zero();
-blend_three_one();
+// blend_three_one();
 
 module blend_three_one(depth=5) {
   x=85.7; y=205; wall=3; thickness=2.5;
