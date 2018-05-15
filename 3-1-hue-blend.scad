@@ -97,7 +97,7 @@ module plug_cutout() {
     linear_extrude(thickness)
       plug_shape(0);
   translate([0, -y/2+22.5, -base_depth])
-    linear_extrude(depth) earthed_plug_holes();
+    linear_extrude(base_depth+additional_depth+1) earthed_plug_holes();
 }
 
 module plug_case() {
@@ -107,7 +107,7 @@ module plug_case() {
 }
 
 module plug_shape(delta=0) {
-  width = 33+delta;
+  width = 37+delta;
   w2 =18/2;
   height = 22+delta;
   h2 = 1;
